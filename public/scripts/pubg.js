@@ -21,7 +21,6 @@ function selectGame(){
     duo.style.display = 'none'
     squad.style.display = 'block'
   }
-
 }
 
 function showData(target){
@@ -29,6 +28,6 @@ function showData(target){
   if(div.style.display === 'none'){
     div.style.display = 'block'
   } else {
-    divdiv.style.display = 'none'
+    div.style.display = 'none'
   }
 }

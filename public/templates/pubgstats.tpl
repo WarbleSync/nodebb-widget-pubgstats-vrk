@@ -1,12 +1,12 @@
-<link rel="stylesheet" type="text/css" href="/plugins/nodebb-widget-pubgstats-vrk/public/css/style.css">
-<script src="/plugins/nodebb-widget-pubgstats-vrk/public/scripts/pubg.js" />
+<script type="text/javascript" src="/plugins/nodebb-widget-pubgstats-vrk/public/scripts/pubg.js"></script>
+<link rel="stylesheet" type="text/css" href="/plugins/nodebb-widget-pubgstats-vrk/public/css/style.css" />
 <div>
   <div class="container-fluid">
     <div class="row align-middle table-title">
       <div class="col-md-12">
         <div class="form-group">
           <label for="pubgselect">Game Mode</label>
-          <select class="form-control" id="pubgselect" onclick="selectGame()">
+          <select class="form-control" id="pubgselect" onchange="selectGame()">
             <option value="solo">Solo</option>
             <option value="duo">Duo</option>
             <option value="squad">Squad</option>
