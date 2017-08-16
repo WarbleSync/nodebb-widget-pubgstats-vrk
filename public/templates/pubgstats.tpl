@@ -5,7 +5,7 @@
       <div class="col-md-12">
         <div class="form-group">
           <label for="pubgselect">Game Mode</label>
-          <select class="form-control" id="pubgselect">
+          <select class="form-control" id="pubgselect" onchange="selectMode()">
             <option value="solo">Solo</option>
             <option value="duo">Duo</option>
             <option value="squad">Squad</option>
@@ -47,7 +47,7 @@
       <div class="col-md-2">{players_solo.stats.Rating}</div>
     </div>
 
-    <div id="solo_details" class="row align-middle table-title well" style="display: none;">
+    <div id="solo_details" class="row align-middle table-title well" style="display: none; padding: 10px;">
       <div class="row">
         <div class="col-md-12">
           <span class="badge">Assists: {players_solo.stats.Assists}</span>&nbsp;&nbsp;
@@ -125,7 +125,7 @@
       <div class="col-md-2">{players_duo.stats.Rating}</div>
     </div>
 
-    <div id="duo_details" class="row align-middle table-title well" style="display: none;">
+    <div id="duo_details" class="row align-middle table-title well" style="display: none; padding: 10px;">
       <div class="row">
         <div class="col-md-12">
           <span class="badge">Assists: {players_duo.stats.Assists}</span>&nbsp;&nbsp;
@@ -203,7 +203,7 @@
       <div class="col-md-2">{players_squad.stats.Rating}</div>
     </div>
 
-    <div id="squad_details" class="row align-middle table-title well" style="display: none;">
+    <div id="squad_details" class="row align-middle table-title well" style="display: none; padding: 10px;">
       <div class="row">
         <div class="col-md-12">
           <span class="badge">Assists: {players_squad.stats.Assists}</span>&nbsp;&nbsp;
@@ -265,33 +265,38 @@
 </div>
 
 <script>
-$('#pubgselect').on('change', function() {
-  if(this.value == 'solo'){
-    $('#solo').show()
-    $('#duo').hide()
-    $('#squad').hide()
+
+function selectMode(){
+  var e = document.getElementById("pubgselect");
+  var mode = e.options[e.selectedIndex].value;
+  var solo = document.getElementById("solo"),
+  duo = document.getElementById("duo"),
+  squad = document.getElementById("squad")
+
+  if(mode == 'solo'){
+    solo.style.display = 'block'
+    duo.style.display = 'none'
+    squad.style.display = 'none'
   }
-  if(this.value == 'duo'){
-    $('#solo').hide()
-    $('#duo').show()
-    $('#squad').hide()
+  if(mode == 'duo'){
+    solo.style.display = 'none'
+    duo.style.display = 'block'
+    squad.style.display = 'none'
   }
-  if(this.value == 'squad'){
-    $('#solo').hide()
-    $('#duo').hide()
-    $('#squad').show()
+  if(mode == 'squad'){
+    solo.style.display = 'noce'
+    duo.style.display = 'none'
+    squad.style.display = 'block'
   }
-})
+}
 
 function showData(target){
   var div = target.nextElementSibling
-  $(div).toggle()
-  // if(tr.style.display === 'none'){
-  //   tr.style.display = 'block'
-  // } else {
-  //   tr.style.display = 'none'
-  // }
-  // console.log(target.nextElementSibling.style.display)
+  if(div.style.display === 'none'){
+    div.style.display = 'block'
+  } else {
+    div.style.display = 'none'
+  }
 }
 
 </script>
