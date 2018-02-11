@@ -3,7 +3,7 @@
 var async =  module.parent.require('async'),
 fs = require('fs'),
 path = require('path'),
-templates = module.parent.require('templates.js'),
+templates = require('benchpressjs'),
 db = require.main.require('./src/database'),
 util = require("util"),
 players = [],
@@ -143,10 +143,17 @@ Widget.renderPubgStatsWidget = function(widget, callback) {
 		// console.dir(JSON.stringify(rep.players))
 		// console.dir(JSON.stringify(rep))
 	  var pre = ""+fs.readFileSync(path.resolve(__dirname,'./public/templates/pubgstats.tpl'));
-		widget.html = templates.parse(pre, rep)
-		// callback(null, templates.parse(pre, rep));
-		// console.log(widget.data)
-		callback(null, widget);
+
+		templates.compileRender(pre, rep)
+		.then(html => {
+			widget.html = html;
+			callback(null, widget);
+		}).
+		catch(err => {
+			console.log(err);
+			callback(err);
+		});
+
   })
 };
 
