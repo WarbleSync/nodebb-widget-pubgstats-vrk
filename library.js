@@ -57,7 +57,7 @@ Widget.renderPubgStatsWidget = function(widget, callback) {
 		function(callback){
 			db.getObjects(lookup_keys,function(err, results){
 				results.forEach(function(u){
-					if(typeof u !== 'undefined'){
+					if(typeof u !== 'undefined' && u !== null){
 						u.stats.forEach(function(stats){
 							if(stats.Match == 'solo'){
 								var player = {
